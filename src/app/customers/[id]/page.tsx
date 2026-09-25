@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Avatar, Box, Button, Card, CardContent, Stack, Typography } from "@mui/material";
 
+import Link from "@/components/Link";
 import type { Customer } from "@/features/customers/type";
 
 async function getCustomer(id: string): Promise<Customer> {
@@ -35,7 +35,11 @@ export default async function CustomerDetailPage({
 
         <Card>
           <CardContent>
-            <Stack direction={{ xs: "column", sm: "row" }} spacing={3} alignItems={{ xs: "flex-start", sm: "center" }}>
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={3}
+              sx={{ alignItems: { xs: "flex-start", sm: "center" } }}
+            >
               <Avatar
                 src={customer.image}
                 alt={`${customer.firstName} ${customer.lastName}`}

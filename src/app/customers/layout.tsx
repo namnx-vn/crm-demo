@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { Box, Button, Divider, Stack, Typography } from "@mui/material";
+
+import Link from "@/components/Link";
 
 export default function CustomersLayout({
   children,
@@ -9,7 +10,7 @@ export default function CustomersLayout({
   return (
     <Box>
       <Box sx={{ px: 4, pt: 3 }}>
-        <Stack direction="row" spacing={2} alignItems="center">
+        <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
           <Typography variant="h6">Customers layout</Typography>
           <Button component={Link} href="/customers" size="small">
             Customer list
