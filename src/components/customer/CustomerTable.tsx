@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import {
   Alert,
   Avatar,
   CircularProgress,
+  Link as MuiLink,
   Paper,
   Table,
   TableBody,
@@ -43,7 +45,11 @@ export default function CustomerTable() {
         <TableBody>
           {data?.users.map((customer) => (
             <TableRow key={customer.id} hover>
-              <TableCell>{customer.id}</TableCell>
+              <TableCell>
+                <MuiLink component={Link} href={`/customers/${customer.id}`}>
+                  {customer.id}
+                </MuiLink>
+              </TableCell>
 
               <TableCell>
                 <Avatar
@@ -53,7 +59,9 @@ export default function CustomerTable() {
               </TableCell>
 
               <TableCell>
-                {customer.firstName} {customer.lastName}
+                <MuiLink component={Link} href={`/customers/${customer.id}`}>
+                  {customer.firstName} {customer.lastName}
+                </MuiLink>
               </TableCell>
 
               <TableCell>{customer.email}</TableCell>
