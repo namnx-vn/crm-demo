@@ -2,8 +2,11 @@ import { Avatar, Box, Button, Card, CardContent, Stack, Typography } from "@mui/
 
 import Link from "@/components/Link";
 import type { Customer } from "@/features/customers/type";
+import BalanceComponent from "./BalanceComponent";
 
 async function getCustomer(id: string): Promise<Customer> {
+  // This fetch runs in the Server Component.
+  // It is used for data needed to render the initial customer information.
   const response = await fetch(`https://dummyjson.com/users/${id}`);
 
   if (!response.ok) {
@@ -26,7 +29,7 @@ export default async function CustomerDetailPage({
       <Stack spacing={3}>
         <Box>
           <Typography variant="overline" color="text.secondary">
-            Dynamic route: /customers/[id]
+            Case 1: Server fetch + small Client Component boundary
           </Typography>
           <Typography variant="h4" component="h1">
             Customer #{id}
@@ -58,11 +61,23 @@ export default async function CustomerDetailPage({
           </CardContent>
         </Card>
 
-        <Box>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            URL /customers/{id} matched src/app/customers/[id]/page.tsx. The customers layout remains around this page.
-          </Typography>
+        <BalanceComponent customerId={id} />
 
+        <Card variant="outlined">
+          <CardContent>
+            <Typography variant="subtitle1" gutterBottom>
+              What to observe
+            </Typography>
+            <Typography variant="body2">
+              Customer information is fetched by page.tsx on the server. The
+              balance area is isolated as a Client Component because it needs a
+              click handler and local state. Click Refresh balance and inspect
+              DevTools &gt; Network to see the browser request.
+            </Typography>
+          </CardContent>
+        </Card>
+
+        <Box>
           <Button component={Link} href="/customers" variant="contained">
             Back to customers
           </Button>
