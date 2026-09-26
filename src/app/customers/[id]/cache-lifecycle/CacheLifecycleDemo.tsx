@@ -2,7 +2,7 @@
 
 import { Alert, Button, Card, CardContent, Stack, Typography } from "@mui/material";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import type { Customer } from "@/features/customers/type";
 
@@ -62,6 +62,15 @@ function CustomerObserver({ customerId }: { customerId: string }) {
 export default function CacheLifecycleDemo({ customerId }: { customerId: string }) {
   const queryClient = useQueryClient();
   const [mounted, setMounted] = useState(true);
+  const [, setTick] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setTick((value) => value + 1);
+    }, 1000);
+
+    return () => window.clearInterval(timer);
+  }, []);
 
   const cachedCustomer = queryClient.getQueryData<Customer>(queryKey(customerId));
 
