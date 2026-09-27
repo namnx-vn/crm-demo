@@ -1,11 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import {
   Alert,
-  Avatar,
   CircularProgress,
-  Link as MuiLink,
   Paper,
   Table,
   TableBody,
@@ -16,6 +13,8 @@ import {
 } from "@mui/material";
 
 import { useCustomers } from "@/features/customers/queries";
+import BulkActionBar from "./BulkActionBar";
+import CustomerRow from "./CustomerRow";
 
 export default function CustomerTable() {
   const { data, isLoading, isError } = useCustomers();
@@ -29,50 +28,30 @@ export default function CustomerTable() {
   }
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Avatar</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Phone</TableCell>
-            <TableCell>Age</TableCell>
-          </TableRow>
-        </TableHead>
+    <>
+      <BulkActionBar />
 
-        <TableBody>
-          {data?.users.map((customer) => (
-            <TableRow key={customer.id} hover>
-              <TableCell>
-                <MuiLink component={Link} href={`/customers/${customer.id}`}>
-                  {customer.id}
-                </MuiLink>
-              </TableCell>
-
-              <TableCell>
-                <Avatar
-                  src={customer.image}
-                  alt={`${customer.firstName} ${customer.lastName}`}
-                />
-              </TableCell>
-
-              <TableCell>
-                <MuiLink component={Link} href={`/customers/${customer.id}`}>
-                  {customer.firstName} {customer.lastName}
-                </MuiLink>
-              </TableCell>
-
-              <TableCell>{customer.email}</TableCell>
-
-              <TableCell>{customer.phone}</TableCell>
-
-              <TableCell>{customer.age}</TableCell>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell padding="checkbox" />
+              <TableCell>ID</TableCell>
+              <TableCell>Avatar</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Phone</TableCell>
+              <TableCell>Age</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+
+          <TableBody>
+            {data?.users.map((customer) => (
+              <CustomerRow key={customer.id} customer={customer} />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }
