@@ -28,7 +28,7 @@ export default async function CustomersPage({ searchParams }: CustomersPageProps
         Search and pagination live in the URL. TanStack Query owns the remote data.
       </Typography>
 
-      <CustomerTable search={search} page={page} />
+      <CustomerTable key={search} search={search} page={page} />
     </Container>
   );
 }
