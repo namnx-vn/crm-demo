@@ -18,12 +18,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
-import {
-  type ChangeEvent,
-  type FormEvent,
-  useEffect,
-  useState,
-} from "react";
+import { type ChangeEvent, type FormEvent, useState } from "react";
 
 import { CUSTOMERS_PAGE_SIZE } from "@/features/customers/api";
 import { useCustomers } from "@/features/customers/queries";
@@ -59,26 +54,17 @@ export default function CustomerTable({ search, page }: CustomerTableProps) {
     page,
   });
 
-  useEffect(() => {
-    setSearchInput(search);
-  }, [search]);
-
   const customers = data?.users ?? [];
   const total = data?.total ?? 0;
   const pageCount = Math.max(1, Math.ceil(total / CUSTOMERS_PAGE_SIZE));
-
-  useEffect(() => {
-    if (data && total > 0 && page > pageCount) {
-      router.replace(buildCustomersUrl(search, pageCount), { scroll: false });
-    }
-  }, [data, page, pageCount, router, search, total]);
 
   function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     router.replace(buildCustomersUrl(searchInput, 1), { scroll: false });
   }
 
-  function handlePageChange(_event: ChangeEvent<unknown>, nextPage: number) {
+  function handlePageChange(event: ChangeEvent<unknown>, nextPage: number) {
+    void event;
     router.replace(buildCustomersUrl(search, nextPage), { scroll: false });
   }
 
