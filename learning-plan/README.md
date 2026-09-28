@@ -38,13 +38,15 @@ Lưu ý: DummyJSON mô phỏng mutation nhưng không lưu dữ liệu vĩnh vi�
 
 ## Plan
 
-- [Day 1](./day-01-nextjs-foundation.md) — App Router, layout, dynamic route
-- [Day 2](./day-02-server-client-data.md) — Server/Client Components, data fetching
-- [Day 3](./day-03-rendering-route-handlers.md) — rendering, caching, Route Handlers
-- [Day 4](./day-04-tanstack-query.md) — TanStack Query fundamentals
-- [Day 5](./day-05-mutations.md) — mutations, invalidation, optimistic update
-- [Day 6](./day-06-zustand.md) — Zustand and state ownership
-- [Day 7](./day-07-integration.md) — end-to-end CRM feature
+- [x] [Day 1](./day-01-nextjs-foundation.md) — App Router, layout, dynamic route
+- [x] [Day 2](./day-02-server-client-data.md) — Server/Client Components, data fetching
+- [x] [Day 3](./day-03-rendering-route-handlers.md) — rendering, caching, Route Handlers
+- [x] [Day 4](./day-04-tanstack-query.md) — TanStack Query fundamentals
+- [x] [Day 5](./day-05-mutations.md) — mutations, invalidation, optimistic update
+- [x] [Day 6](./day-06-zustand.md) — Zustand and state ownership
+- [x] [Day 7](./day-07-integration.md) — end-to-end CRM feature
+
+Implementation của plan đã hoàn tất. Bước tiếp theo là tự code lại hoặc mở rộng feature mà không dựa vào hướng dẫn từng bước để kiểm tra mức độ thành thạo.
 
 ## Rule quan trọng
 
